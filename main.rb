@@ -54,19 +54,29 @@ class Main
     # Move elevator to destination floor
     @elevator.move_to(destination_floor)
 
-    passengers.each { |passenger| @elevator.drop_passenger(passenger) }
+    passengers.each do |passenger|
+      @elevator.drop_passenger(passenger)
+      print_passenger_details(passenger)
+    end
   end
 
   def generate_passengers
     passengers = []
     num_passengers = rand(1..5) # Randomly generate 1 to 5 passengers
     num_passengers.times do |i|
-      passenger = Passenger.new("Passenger #{i+1}", rand(1..@floors.length))
+      selected_floor = rand(1..@floors.length)
+      exited_floor = rand(1..@floors.length)
+      passenger = Passenger.new("Passenger #{i+1}", selected_floor, exited_floor)
       passengers << passenger
     end
     passengers
   end
+
+  def print_passenger_details(passenger)
+    print "#{passenger.name} selected floor #{passenger.selected_floor} and exited on floor #{passenger.exited_floor}.\n"
+  end  
 end
 
+# Start the program
 main = Main.new
 main.start

@@ -19,6 +19,6 @@ class Elevator
 
   def drop_passenger(passenger)
     @passengers.delete(passenger)
-    puts "#{passenger.name} has exited the elevator at floor #{passenger.destination_floor}."
+    puts "#{passenger.name} has exited the elevator at floor #{passenger.exited_floor}."
   end
 end
