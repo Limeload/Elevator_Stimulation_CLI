@@ -66,11 +66,13 @@ class Main
     num_passengers.times do |i|
       selected_floor = rand(1..@floors.length)
       exited_floor = rand(1..@floors.length)
-      passenger = Passenger.new("Passenger #{i+1}", selected_floor, exited_floor)
+      print "Enter name for Passenger #{i+1}: "
+      name = gets.chomp
+      passenger = Passenger.new(name, selected_floor, exited_floor)
       passengers << passenger
     end
     passengers
-  end
+  end  
 
   def print_passenger_details(passenger)
     print "#{passenger.name} selected floor #{passenger.selected_floor} and exited on floor #{passenger.exited_floor}.\n"
